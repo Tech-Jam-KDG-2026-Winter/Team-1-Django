@@ -1,6 +1,7 @@
-
-templates/app/の中に、htmlフォルダをつくり、中身を書く。
-base.htmlにヘッダーやフッター、サイドバーなどを記述しその他のhtmlで読み込む。
-models.py urls.py settings.pyは基本的に書き換えない
-
 初回
+
+リポジトリをクローンする
+プロジェクトを保存したいフォルダの階層で、以下のコマンドを打つ
+git clone https://github.com/Tech-Jam-KDG-2026-Winter/Team-1-Django.git
+
+プロジェクトの階層に移動する
