@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}日記一覧 - アプリ名{% endblock %}
+
+{% block content %}
+<div class="index-container">
+    <div class="write-link-area">
+        <a href="{% url 'diary_write' %}" class="btn-write">今日の日記を書く</a>
+    </div>
+
+    <section class="search-section">
+        <form method="get" class="search-form">
+            <input type="text" name="q" placeholder="キーワード (本文・AI返信)" value="{{ request.GET.q }}">
+            <div class="date-range">
+                <input type="date" name="start_date" value="{{ request.GET.start_date }}"> 〜 
+                <input type="date" name="end_date" value="{{ request.GET.end_date }}">
+            </div>
+            <button type="submit" class="btn-search">検索</button>
+            <a href="{% url 'index' %}" class="btn-reset">リセット</a>
+        </form>
+    </section>
+
+    <section class="diary-list">
+        <h3>過去の自分の日記一覧</h3>
+        {% for diary in diaries %}
+            <a href="{% url 'diary_detail' diary.pk %}" class="diary-item">
+                <span class="date">{{ diary.date|date:"Y年m月d日" }}</span>
+                <p class="excerpt">{{ diary.content|truncatechars:30 }}</p>
+            </a>
+        {% empty %}
+            <p>条件に合う日記が見つかりません。</p>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

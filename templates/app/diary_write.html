@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}日記を書く - アプリ名{% endblock %}
+
+{% block content %}
+<div class="write-container">
+    <h2>今日の日記を書く</h2>
+    <p class="info">24時までは何度でも上書き保存可能です。</p>
+
+    <form method="post" id="diary-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea name="content" rows="12" placeholder="今日はどんな一日でしたか？" required>{{ diary.content }}</textarea>
+        </div>
+        <button type="submit" id="save-btn" class="btn-save">保存して一覧画面へ</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}今日の話題 - アプリ名{% endblock %}
+
+{% block content %}
+<div class="topic-page">
+    <div class="topic-header">
+        <h3>今日のお題</h3>
+        <p class="topic-text">{{ topic.content }}</p>
+    </div>
+
+    <div id="chat-area" class="comment-container">
+        {% for comment in comments %}
+            <div class="comment-bubble">
+                <span class="user">{{ comment.user.username }}</span>
+                <p class="text">{{ comment.text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="post" class="comment-form">
+        {% csrf_token %}
+        <input type="text" name="comment" placeholder="メッセージを入力..." required>
+        <button type="submit">送信</button>
+    </form>
+</div>
+{% endblock %}
