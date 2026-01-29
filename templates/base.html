@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}アプリ名{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="app-body">
+
+    <header class="app-header">
+        <div class="header-container">
+            {% if user.is_authenticated %}
+            <h1 class="app-title">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'img/logo.png' %}" alt="アプリロゴ" class="app-logo">
+                    アプリ名
+                </a>
+            </h1>
+
+            <div class="today-date">
+                {{ now|date:"Y年m月d日" }}
+            </div>
+
+            <div class="menu-wrapper">
+                <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                <label for="menu-toggle" class="menu-icon">
+                    <span class="hamburger-line"></span>
+                </label>
+
+                <nav class="hamburger-menu">
+                    <ul class="menu-list">
+                        <li><a href="{% url 'index' %}">日記一覧</a></li>
+                        <li><a href="{% url 'diary_write' %}">今日の日記</a></li>
+                        <li><a href="{% url 'daily_topic' %}">今日の話題</a></li>
+                        <li><a href="{% url 'setting' %}">設定</a></li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-link">ログアウト</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {% else %}
+            <h1 class="app-title">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'img/logo.png' %}" alt="アプリロゴ" class="app-logo">
+                    アプリ名
+                </a>
+            </h1>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="app-main">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

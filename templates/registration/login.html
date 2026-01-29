@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}ログイン - アプリ名{% endblock %}
+{% block content %}
+<div class="login-container">
+    <h2>ログイン</h2>
+
+    {% if form.errors %}
+        <p class="error-msg">ユーザー名かパスワードが正しくありません。</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_username">ユーザー名:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="id_password">パスワード:</label>
+            {{ form.password }}
+        </div>
+        <button type="submit" class="btn-login">ログイン</button>
+    </form>
+
+    <div class="login-footer">
+        <p>アカウントをお持ちでない方は <a href="{% url 'user_create' %}">新規登録</a></p>
+    </div>
+</div>
+{% endblock %}

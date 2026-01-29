@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}設定 - アプリ名{% endblock %}
+
+{% block content %}
+<div class="setting-container">
+    <h2>アプリ設定</h2>
+
+    {% if messages %}
+        <div class="success-box">
+            {% for message in messages %}
+                <p class="msg">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="setting-card">
+            <div class="setting-row">
+                <label class="switch-label">
+                    AIアドバイス機能
+                    <input type="checkbox" name="ai_enabled" {% if profile.ai_enabled %}checked{% endif %}>
+                </label>
+            </div>
+            
+            <div class="setting-description">
+                <p class="description-title">アドバイス機能をONにすると？</p>
+                <p>通常の返信に加え、あなたの記録に基づいた「健康についてのアドバイス」が追加されます。</p>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn-save-settings">設定を保存する</button>
+    </form>
+</div>
+{% endblock %}
