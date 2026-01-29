@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}アプリ名{% endblock %}</title>
+    <title>{% block title %}my pace{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body class="app-body">
@@ -15,7 +15,7 @@
             <h1 class="app-title">
                 <a href="{% url 'index' %}">
                     <img src="{% static 'img/logo.png' %}" alt="アプリロゴ" class="app-logo">
-                    アプリ名
+                    my pace
                 </a>
             </h1>
 
@@ -48,7 +48,7 @@
             <h1 class="app-title">
                 <a href="{% url 'index' %}">
                     <img src="{% static 'img/logo.png' %}" alt="アプリロゴ" class="app-logo">
-                    アプリ名
+                    my pace
                 </a>
             </h1>
             {% endif %}
