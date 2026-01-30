@@ -6,6 +6,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import UserProfile, Diary, DailyThread, ThreadComment
+from datetime import timedelta
+from django.db.models import Q
 
 # Django標準（django.contrib.auth.urls）を使うのでログイン/ログアウトViewは今回は書きません。
 
@@ -28,12 +30,35 @@ def user_create(request):
 @login_required
 def index(request):
     # 1. 前日の日付を取得 (yesterday = timezone.now().date() - timedelta(days=1))
+    yesterday = timezone.now().date() - timedelta(days=1)
     # 2. ログインユーザーの日記のうち、「昨日以前（date <= yesterday）」のものを取得。
     # 3. 順序は date降順（昨日のものが1番上）。
+    diaries = Diary.objects.filter(
+        user = request.user,
+        date__lte = yesterday
+    ).order_by("-date")
+
     # 4. 検索フォームの処理（キーワード・期間）はこの「昨日以前」のデータに対して行う。
+    q = request.GET.get('q')
+    start = request.GET.get('start_date')
+    end = request.GET.get('end_date')
+
+    if q:
+        # キーワードが本文(content)かAI返信に含まれるか
+        diaries = diaries.filter(Q(content__icontains=q) | Q(ai_response__icontains=q))
+    if start:
+        diaries = diaries.filter(date__gte=start)
+    if end:
+        diaries = diaries.filter(date__lte=end)
+    
     # 5. テンプレートへは取得した日記リストを渡して表示させること。
+    context = {
+        'diaries': diaries,
+        'now': timezone.now()
+    }
+   
     # - 変数名：日記のリスト名はdiaries
-    return render(request, 'app/index.html', {'now': timezone.now()})
+    return render(request, 'app/index.html', context)
 
 # 今日の話題画面
 @login_required
