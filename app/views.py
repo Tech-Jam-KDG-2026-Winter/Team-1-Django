@@ -6,6 +6,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import UserProfile, Diary, DailyThread, ThreadComment
+from google import genai
+from django.conf import settings
 
 # Django標準（django.contrib.auth.urls）を使うのでログイン/ログアウトViewは今回は書きません。
 
@@ -51,13 +53,7 @@ def daily_topic(request):
 # 日記を書く（作成・更新）画面
 @login_required
 def diary_write(request):
-    # 1. ユーザーが「保存」ボタンを押す（POST）。
-    # 2. 保存する時に毎回「現在時刻の日付」で Diary.objects.update_or_create()（新規なら作成、既存なら上書き） を行う。
-    # 3. 保存した直後に、その内容(diary.content)を Gemini API に送る。
-    # 4. Gemini から返ってきたメッセージを、同じ日記データの 'ai_response' カラムに上書き保存する。
-    # 5. ※画面上（diary_write.html）では AI の返信は表示せず、入力欄だけ見せる。
-    # - API呼び出し中は画面が止まるので、保存完了後に redirect('index') させる。
-    # - update_or_create の検索条件は user=request.user, date=timezone.now().date() とする。
+
     return render(request, 'app/diary_write.html', {'now': timezone.now()})
 
 # 日記詳細
