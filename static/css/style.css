@@ -129,3 +129,32 @@
         font-size: 22px;
     }
 }
+.app-header{
+    background: #ffffff;
+    padding: 16px 20px;
+}
+
+.header-container{
+    max-width: 100%;
+}
+
+.app-title {
+    text-align: center;
+    margin: 0;
+}
+
+.app-title a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #254c73;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.app-logo{
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
