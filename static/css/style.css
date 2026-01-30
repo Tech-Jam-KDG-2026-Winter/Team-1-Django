@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* 会員登録のページ全体 */
+/* 会員登録画面 */
 .user-create-container{
     max-width: 100%;
     margin: 0;
@@ -52,6 +52,7 @@
     letter-spacing: 0.3px;
 }
 
+/* フォーム */
 .form-group input[type="text"],
 .form-group input[type="password"]{
     width: 100%;
@@ -86,13 +87,14 @@
     accent-color: #527dac;
 }
 
+/* 会員登録ボタン */
 .btn-submit{
     width: 100%;
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
     color: #ffffff;
-    background: linear-gradient(135deg,#3c5c7e);
+    background: #254c73;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -103,7 +105,7 @@
 }
 
 .btn-submit:active{
-    background: linear-gradient(135deg,#547fac);
+    background: #527dac;
     transform: scale(0.98);
 }
 
@@ -157,6 +159,8 @@
     height: 32px;
     object-fit: contain;
 }
+
+/* ログイン画面 */
 .login-container{
     max-width: 100%;
     margin: 0;
@@ -174,6 +178,8 @@
     margin-bottom: 28px;
     letter-spacing: 0.5px;
 }
+
+/* エラー */
 .error-msg{
     padding: 12px 16px;
     margin-bottom: 20px;
@@ -184,13 +190,15 @@
     border-left: 4px solid #c33;
     text-align: center;
 }
+
+/* ログインボタン */
 .btn-login{
     width: 100%;
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
     color: #ffffff;
-    background: linear-gradient(135deg,#254c73 100%);
+    background:#254c73;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -202,7 +210,7 @@
 
 
 .btn-login:active{
-    background: linear-gradient(135deg,#26567c 100%);
+    background: #527dac;
     transform: scale(0.98);
 }
 
@@ -226,18 +234,201 @@
     padding: 4px 8px;
     -webkit-tap-highlight-color: transparent;
 }
+
 .login-footer a:active{
     color: #254c73;
 }
 
-@media (max-width:375px) {
+/* 日記一覧画面 */
+.index-container{
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.write-link-area{
+    margin-bottom: 24px;
+}
+
+.btn-wtire{
+    display: block;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background:#254c73;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    -webkit-tap-highlight-color: transparent;
+}
+.btn-write:active{
+    background:#2e6897;
+    transform: scale(0.98);
+}
+.search-section{
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+.search-form input[type="text"]{
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 2px solid #cfdde9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.search-form input[type="text"]:focus{
+    outline: none;
+    border-color: #527dac;
+}
+
+.search-form input[type="text"]::placeholder{
+    color: #a0b5c9;
+}
+.date-range{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    columns: #254c73;
+}
+
+.date-range input[type="date"]{
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 2px solid #cfdde9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.date-range input[type="date"]:focus{
+    outline: none;
+    border-color: #527dac;
+}
+
+.btn-search,
+.btn-reset{
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    border: none;
+}
+
+.btn-search{
+    background: #254c73;
+    color: #ffffff;
+    margin-right: 8px;
+}
+
+.btn-search:active{
+    background: #527dac;
+    transform: scale(0.98);
+}
+
+.btn-reset{
+    background: #ffffff;
+    color: #527dac;
+    border: 2px solid #cfdde9;
+}
+
+.btn-reset:active{
+    background: #f8f9fa;
+    border-color: #527dac;
+}
+.diary-list{
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+}
+.diary-list h3{
+    font-size: 18px;
+    font-weight: 600;
+    color: #254c73;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #cfdde9;
+}
+.diary-item{
+    display: block;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.diary-item:active{
+    background: #e8f0f8;
+    transform: translateX(4px);
+}
+.diary-item .date{
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #527dac;
+    margin-bottom: 8px;
+}
+.diary-item .excerpt{
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+
+}
+.diary-list > p{
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-size: 14px
+}
+
+/* スマホ対応 */
+@media (max-width: 375px) {
     .user-create-container,
-    .login-container{
+    .login-container,
+    .index-container {
         padding: 20px 16px;
     }
 
     .user-create-container h2,
     .login-container h2 {
         font-size: 22px;
+    }
+
+    .search-section,
+    .diary-list {
+        padding: 16px;
+    }
+
+    .btn-search,
+    .btn-reset {
+        padding: 10px 20px;
+        font-size: 14px;
     }
 }
