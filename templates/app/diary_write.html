@@ -9,7 +9,7 @@
     <form method="post" id="diary-form">
         {% csrf_token %}
         <div class="form-group">
-            <textarea name="content" rows="12" placeholder="今日はどんな一日でしたか？" required>{{ diary.content }}</textarea>
+            <textarea name="content" id="diary-textarea" rows="12" placeholder="今日はどんな一日でしたか？" required>{% if diary %}{{ diary.content }}{% endif %}</textarea>
         </div>
         <button type="submit" id="save-btn" class="btn-save">保存して一覧画面へ</button>
     </form>

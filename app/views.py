@@ -53,6 +53,69 @@ def daily_topic(request):
 # 日記を書く（作成・更新）画面
 @login_required
 def diary_write(request):
+    today = timezone.now().date()
+    diary = Diary.objects.filter(user=request.user, date=today).first()
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        profile = request.user.userprofile
+
+        diary, created = Diary.objects.update_or_create(
+            user=request.user,
+            date=today,
+            defaults={'content': content}
+        )
+
+        try:
+            client = genai.Client(api_key=settings.GEMINI_API_KEY)
+
+            content_length = len(content)
+
+            if profile.is_advice_enabled:
+                if content_length < 150:
+                    instruction = "60文字程度で短く温かく共感し、続けて40文字程度で健康維持（食事・睡眠・運動・リフレッシュ）に関する前向きなアドバイスを1つ伝えて。"
+                else:
+                    target_length = min(int(content_length * 2 / 3), 400)
+                    instruction = f"{target_length}文字程度で、内容を深く汲み取って共感した上で、複数の視点から健康維持（食事・睡眠・運動・リフレッシュ）に関する前向きなアドバイスを伝えて。"
+            else:
+                if content_length < 100:
+                    instruction = "60文字程度で、短く温かく共感して。"
+                else:
+                    target_length = min(int(content_length * 2 / 3), 300)
+                    instruction = f"{target_length}文字程度で、日記の内容に深く共感し、丁寧に寄り添って。"
+
+            system_settings = (
+                "あなたはユーザーの健康を支える日記パートナーです。"
+                "【最優先ルール：鏡のように文体を合わせる】"
+                "1. 日記が「です・ます」などの敬語なら、必ず同じトーンの丁寧な敬語で返信してください。"
+                "2. 日記がタメ語なら、親しみやすいタメ語で返信してください。"
+                "いかなる場合も、この文体のルールを破ってはいけません。"
+                "【内容のガイドライン】"
+                "・親しい友人のような温かさを持ちつつ、事務的にならない柔らかい表現を選んでください。"
+                "・「今すぐ」「今夜は」などは使わず、「疲れた時は」「次に〜する時は」といった、後で読み返しても役立つ表現にしてください。"
+                "・【】や「---」、箇条書きは禁止し、自然な文章のみで構成してください。"
+            )
+            
+            prompt = f"{system_settings}\n\n指示：{instruction}\n\n日記内容：\n{content}"
+            
+            response = client.models.generate_content(
+                model='gemini-flash-latest', 
+                contents=prompt
+            )
+            
+            diary.ai_response = response.text
+            diary.save()
+
+        except Exception as e:
+            print(f"!!! エラー発生: {e}")
+            diary.ai_response = f"（エラー）: {e}"
+            diary.save()
+
+        return redirect('index')
+
+    return render(request, 'app/diary_write.html', {
+        'now': timezone.now(),
+        'diary': diary
+    })
 
     return render(request, 'app/diary_write.html', {'now': timezone.now()})
 
