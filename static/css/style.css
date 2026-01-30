@@ -71,11 +71,19 @@
 .form-group input[type="password"]:focus{
     outline: none;
     border-color: #527dac;
-    /* box-shadow: ; */
 }
 
 .form-group input[type="text"]::placeholder{
     color: #a0b5c9;
+}
+
+.form-group input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    accent-color: #527dac;
 }
 
 .btn-submit{
@@ -120,15 +128,6 @@
     color: #254c73;
 }
 
-@media (max-width:375px) {
-    .user-create-container{
-        padding: 20px 16px;
-    }
-
-    .user-create-container h2 {
-        font-size: 22px;
-    }
-}
 .app-header{
     background: #ffffff;
     padding: 16px 20px;
@@ -157,4 +156,88 @@
     width: 32px;
     height: 32px;
     object-fit: contain;
+}
+.login-container{
+    max-width: 100%;
+    margin: 0;
+    padding: 24px 20px;
+    background: #ffffff;
+    min-height: 100vh;
+
+}
+
+.login-container h2{
+    font-size: 24px;
+    font-weight: 600;
+    color: #254c73;
+    text-align: center;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+}
+.error-msg{
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fee;
+    color: rgb(206, 68, 68);
+    border-left: 4px solid #c33;
+    text-align: center;
+}
+.btn-login{
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg,#254c73 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    margin-top: 12px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.btn-login:active{
+    background: linear-gradient(135deg,#26567c 100%);
+    transform: scale(0.98);
+}
+
+.login-footer{
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #cfdde9;
+}
+.login-footer p{
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.login-footer a{
+    color: #527dac;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 4px 8px;
+    -webkit-tap-highlight-color: transparent;
+}
+.login-footer a:active{
+    color: #254c73;
+}
+
+@media (max-width:375px) {
+    .user-create-container,
+    .login-container{
+        padding: 20px 16px;
+    }
+
+    .user-create-container h2,
+    .login-container h2 {
+        font-size: 22px;
+    }
 }
