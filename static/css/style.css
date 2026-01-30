@@ -1,0 +1,131 @@
+@charset "UTF-8";
+/* 会員登録のページ全体 */
+.user-create-container{
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 20px;
+    background: white;
+    min-height: 100vh;
+}
+
+/* 見出し */
+.user-create-container h2{
+    font-size: 24px;
+    font-weight: 600;
+    color: #254c73;
+    text-align: center;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+}
+
+/* エラーメッセージ↓ */
+.error-list{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+
+.error-list li{
+    padding: 12px 16px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    background: #fee;
+    color: rgb(206, 68, 68);
+}
+
+.error-list li.success{
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* フォーム */
+.form-group{
+    margin-bottom: 24px;
+}
+
+.form-group label{
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #254c73;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"]{
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #cfdde9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus{
+    outline: none;
+    border-color: #527dac;
+    /* box-shadow: ; */
+}
+
+.form-group input[type="text"]::placeholder{
+    color: #a0b5c9;
+}
+
+.btn-submit{
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg,#3c5c7e);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    margin-top: 12px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-submit:active{
+    background: linear-gradient(135deg,#547fac);
+    transform: scale(0.98);
+}
+
+.footer-link{
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #cfdde9;
+}
+
+.footer-link a {
+    color: #527dac;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    display: inline-block;
+    padding: 8px 12px;
+    -webkit-tap-highlight-color: transparent;
+}
+.footer-link a:active{
+    color: #254c73;
+}
+
+@media (max-width:375px) {
+    .user-create-container{
+        padding: 20px 16px;
+    }
+
+    .user-create-container h2 {
+        font-size: 22px;
+    }
+}
