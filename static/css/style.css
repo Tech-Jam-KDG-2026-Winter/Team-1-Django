@@ -4,7 +4,7 @@
     max-width: 100%;
     margin: 0;
     padding: 20px 20px;
-    background: white;
+    background: #F0F5F9;
     min-height: 100vh;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .error-list li.success{
-    background: #e8f5e9;
+    background: #F0F5F9;
     color: #2e7d32;
 }
 
@@ -93,7 +93,7 @@
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
+    color: #F0F5F9;
     background: #254c73;
     border: none;
     border-radius: 8px;
@@ -131,7 +131,7 @@
 }
 
 .app-header{
-    background: #ffffff;
+    background: #F0F5F9;
     padding: 16px 20px;
 }
 
@@ -165,7 +165,7 @@
     max-width: 100%;
     margin: 0;
     padding: 24px 20px;
-    background: #ffffff;
+    background: #F0F5F9;
     min-height: 100vh;
 
 }
@@ -185,7 +185,7 @@
     margin-bottom: 20px;
     border-radius: 8px;
     font-size: 14px;
-    background: #fee;
+    background: #Fee;
     color: rgb(206, 68, 68);
     border-left: 4px solid #c33;
     text-align: center;
@@ -197,7 +197,7 @@
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
+    color: #F0F5F9;
     background:#254c73;
     border: none;
     border-radius: 8px;
@@ -244,7 +244,7 @@
     max-width: 100%;
     margin: 0;
     padding: 20px;
-    background: #f8f9fa;
+    background: #F0F5F9;
     min-height: 100vh;
 }
 
@@ -252,13 +252,13 @@
     margin-bottom: 24px;
 }
 
-.btn-wtire{
+.btn-write{
     display: block;
     width: 100%;
     padding: 16px;
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
+    color: #F0F5F9;
     background:#254c73;
     text-align: center;
     text-decoration: none;
@@ -272,7 +272,7 @@
     transform: scale(0.98);
 }
 .search-section{
-    background: #ffffff;
+    background: #F0F5F9;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 24px;
@@ -341,7 +341,7 @@
 
 .btn-search{
     background: #254c73;
-    color: #ffffff;
+    color: #F0F5F9;
     margin-right: 8px;
 }
 
@@ -351,17 +351,17 @@
 }
 
 .btn-reset{
-    background: #ffffff;
+    background: #F0F5F9;
     color: #527dac;
     border: 2px solid #cfdde9;
 }
 
 .btn-reset:active{
-    background: #f8f9fa;
+    background: #F0F5F9;
     border-color: #527dac;
 }
 .diary-list{
-    background: #ffffff;
+    background: #F0F5F9;
     padding: 20px;
     border-radius: 12px;
 }
@@ -377,14 +377,14 @@
     display: block;
     padding: 16px;
     margin-bottom: 12px;
-    background: #f8f9fa;
+    background: #F0F5F9;
     border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
 }
 .diary-item:active{
-    background: #e8f0f8;
+    background: #F0F5F9;
     transform: translateX(4px);
 }
 .diary-item .date{
@@ -408,16 +408,88 @@
     font-size: 14px
 }
 
+.write-container{
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #F0F5F9;
+    min-height: 100vh;
+}
+.write-container h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #254c73;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.write-container .info{
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.write-container textarea{
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    line-height: 1.8;
+    border: 2px solid #cfdde9;
+    border-radius: 12px;
+    background: #F0F5F9;
+    color: #333;
+    resize: vertical;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.write-container textarea:focus{
+    outline: none;
+    border-color: #527dac;
+}
+
+.write-container textarea::placeholder{
+    color: #a0b5c9;
+}
+
+.btn-save{
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #F0F5F9;
+    background: #254c73;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    margin-top: 16px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-save:active{
+    background: #527dac;
+    transform: scale(0.98)
+}
+
 /* スマホ対応 */
 @media (max-width: 375px) {
     .user-create-container,
     .login-container,
-    .index-container {
+    .index-container,
+    .write-container {
         padding: 20px 16px;
     }
 
     .user-create-container h2,
-    .login-container h2 {
+    .login-container h2,
+    .write-container h2 {
         font-size: 22px;
     }
 
@@ -430,5 +502,9 @@
     .btn-reset {
         padding: 10px 20px;
         font-size: 14px;
+    }
+    .write-container textarea{
+        font-size: 15px;
+        padding: 14px;
     }
 }
