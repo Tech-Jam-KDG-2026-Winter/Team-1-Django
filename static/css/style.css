@@ -16,7 +16,7 @@ select {
     max-width: 100%;
     margin: 0;
     padding: 20px 20px;
-    background: #F0F5F9;
+    background: #f2f7f8;
     min-height: 100vh;
 }
 
@@ -24,7 +24,7 @@ select {
 .user-create-container h2{
     font-size: 24px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     text-align: center;
     margin-bottom: 28px;
     letter-spacing: 0.5px;
@@ -46,7 +46,7 @@ select {
 }
 
 .error-list li.success{
-    background: #F0F5F9;
+    background: #f2f7f8;
     color: #2e7d32;
 }
 
@@ -59,7 +59,7 @@ select {
     display: block;
     font-size: 14px;
     font-weight: 500;
-    color: #254c73;
+    color: #3f4a5a;
     margin-bottom: 8px;
     letter-spacing: 0.3px;
 }
@@ -105,8 +105,8 @@ select {
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
-    color: #F0F5F9;
-    background: #254c73;
+    color: #f2f7f8;
+    background: #3f4a5a;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -139,11 +139,11 @@ select {
     -webkit-tap-highlight-color: transparent;
 }
 .footer-link a:active{
-    color: #254c73;
+    color: #3f4a5a;
 }
 
 .app-header{
-    background: #F0F5F9;
+    background: #f2f7f8;
     padding: 16px 20px;
 }
 
@@ -161,7 +161,7 @@ select {
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: #254c73;
+    color: #3f4a5a;
     font-size: 20px;
     font-weight: 600;
 }
@@ -177,7 +177,7 @@ select {
     max-width: 100%;
     margin: 0;
     padding: 24px 20px;
-    background: #F0F5F9;
+    background: #f2f7f8;
     min-height: 100vh;
 
 }
@@ -185,7 +185,7 @@ select {
 .login-container h2{
     font-size: 24px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     text-align: center;
     margin-bottom: 28px;
     letter-spacing: 0.5px;
@@ -215,8 +215,8 @@ form:has(input[type="password"]) {
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
-    color: #F0F5F9;
-    background:#254c73;
+    color: #f2f7f8;
+    background:#3f4a5a;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -254,7 +254,7 @@ form:has(input[type="password"]) {
 }
 
 .login-footer a:active{
-    color: #254c73;
+    color: #3f4a5a;
 }
 
 /* 日記一覧画面 */
@@ -262,7 +262,7 @@ form:has(input[type="password"]) {
     max-width: 100%;
     margin: 0;
     padding: 20px;
-    background: #F0F5F9;
+    background: #f2f7f8;
     min-height: 100vh;
 }
 
@@ -281,8 +281,8 @@ form:has(input[type="password"]) {
     padding: 16px;
     font-size: 16px;
     font-weight: 600;
-    color: #F0F5F9;
-    background:#254c73;
+    color: #f2f7f8;
+    background:#3f4a5a;
     text-align: center;
     text-decoration: none;
     border-radius: 8px;
@@ -297,7 +297,7 @@ form:has(input[type="password"]) {
     transform: scale(0.98);
 }
 .search-section{
-    background: #F0F5F9;
+    background: #f2f7f8;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 24px;
@@ -308,7 +308,7 @@ form:has(input[type="password"]) {
     font-size: 15px;
     border: 2px solid #cfdde9;
     border-radius: 8px;
-    background: #ffffff;
+    background: #f2f7f8;
     color: #333;
     margin-bottom: 12px;
     box-sizing: border-box;
@@ -330,7 +330,7 @@ form:has(input[type="password"]) {
     gap: 8px;
     margin-bottom: 12px;
     font-size: 14px;
-    color: #254c73;
+    color: #3f4a5a;
 }
 
 .date-range input[type="date"]{
@@ -339,7 +339,7 @@ form:has(input[type="password"]) {
     font-size: 14px;
     border: 2px solid #cfdde9;
     border-radius: 8px;
-    background: #ffffff;
+    background: #f2f7f8;
     color: #333;
     box-sizing: border-box;
     -webkit-appearance: none;
@@ -366,8 +366,8 @@ form:has(input[type="password"]) {
 }
 
 .btn-search{
-    background: #254c73;
-    color: #F0F5F9;
+    background: #3f4a5a;
+    color: #f2f7f8;
     margin-right: 8px;
 }
 
@@ -377,24 +377,24 @@ form:has(input[type="password"]) {
 }
 
 .btn-reset{
-    background: #F0F5F9;
+    background: #f2f7f8;
     color: #527dac;
     border: 2px solid #cfdde9;
 }
 
 .btn-reset:active{
-    background: #F0F5F9;
+    background: #f2f7f8;
     border-color: #527dac;
 }
 .diary-list{
-    background: #F0F5F9;
+    background: #f2f7f8;
     padding: 20px;
     border-radius: 12px;
 }
 .diary-list h3{
     font-size: 18px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     margin-bottom: 16px;
     padding-bottom: 12px;
     border-bottom: 2px solid #cfdde9;
@@ -403,14 +403,14 @@ form:has(input[type="password"]) {
     display: block;
     padding: 16px;
     margin-bottom: 12px;
-    background: #F0F5F9;
+    background: #f2f7f8;
     border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
 }
 .diary-item:active{
-    background: #F0F5F9;
+    background: #f2f7f8;
     transform: translateX(4px);
 }
 .diary-item .date{
@@ -440,13 +440,13 @@ form:has(input[type="password"]) {
     max-width: 100%;
     margin: 0;
     padding: 20px;
-    background: #F0F5F9;
+    background: #f2f7f8;
     min-height: 100vh;
 }
 .write-container h2 {
     font-size: 24px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     text-align: center;
     margin-bottom: 12px;
     letter-spacing: 0.5px;
@@ -466,7 +466,7 @@ form:has(input[type="password"]) {
     line-height: 1.8;
     border: 2px solid #cfdde9;
     border-radius: 12px;
-    background: #F0F5F9;
+    background: #f2f7f8;
     color: #333;
     resize: vertical;
     box-sizing: border-box;
@@ -491,8 +491,8 @@ form:has(input[type="password"]) {
     padding: 16px;
     font-size: 16px;
     font-weight: 600;
-    color: #F0F5F9;
-    background: #254c73;
+    color: #f2f7f8;
+    background: #3f4a5a;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -512,7 +512,7 @@ form:has(input[type="password"]) {
     max-width: 100%;
     margin: 0;
     padding: 20px;
-    background: #F0F5F9;
+    background: #f2f7f8;
     min-height: 100vh;
 }
 
@@ -523,12 +523,12 @@ form:has(input[type="password"]) {
 .diary-detail header h2{
     font-size: 24px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     text-align: center;
     letter-spacing: 0.5px;
 }
 .content-box{
-    background-color: #ffffff;
+    background-color: #f2f7f8;
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 20px;
@@ -538,7 +538,7 @@ form:has(input[type="password"]) {
 .content-box h3{
     font-size: 16px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     margin-bottom: 16px;
     padding-bottom: 12px;
     border-bottom: 2px solid #cfdde9;
@@ -558,7 +558,7 @@ form:has(input[type="password"]) {
 
 .ai-feedback{
     border-left: 4px solid #5cad82;
-    background: #f8fefb;
+    background: #f2f7f8;
 }
 
 .ai-feedback h3{
@@ -576,7 +576,7 @@ form:has(input[type="password"]) {
     font-size: 16px;
     font-weight: 600;
     color: #527dac;
-    background: #ffffff;
+    background: #f2f7f8;
     text-align: center;
     text-decoration: none;
     border: 2px solid #cfdde9;
@@ -586,7 +586,7 @@ form:has(input[type="password"]) {
 }
 
 .btn-back:active{
-    background: #f8f9fa;
+    background: #f2f7f8;
     border-color: #527dac;
     transform: scale(0.98);
 }
@@ -595,14 +595,14 @@ form:has(input[type="password"]) {
     max-width: 100%;
     margin: 0;
     padding: 20px;
-    background: #f8f9fa;
+    background: #f2f7f8;
     min-height: 100vh;
 }
 
 .setting-container h2{
     font-size: 24px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     text-align: center;
     margin-bottom: 24px;
     letter-spacing: 0.5px;
@@ -623,7 +623,7 @@ form:has(input[type="password"]) {
 }
 
 .setting-card{
-    background: #ffffff;
+    background: #f2f7f8;
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 20px;
@@ -641,7 +641,7 @@ form:has(input[type="password"]) {
     align-items: center;
     font-size: 16px;
     font-weight: 500;
-    color: #254c73;
+    color: #3f4a5a;
     cursor: pointer;
     user-select: none;
 }
@@ -669,7 +669,7 @@ form:has(input[type="password"]) {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: #ffffff;
+    background: #f2f7f8;
     top: 2px;
     left: 2px;
     transition: all 0.3s ease;
@@ -687,7 +687,7 @@ form:has(input[type="password"]) {
 .description-title{
     font-size: 14px;
     font-weight: 600;
-    color: #254c73;
+    color: #3f4a5a;
     margin-bottom: 8px;
 }
 
@@ -707,8 +707,8 @@ form:has(input[type="password"]) {
     padding: 16px;
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(135deg, #527dac 0%, #254c73 100%);
+    color: #f2f7f8;
+    background: linear-gradient(135deg, #527dac 0%, #3f4a5a 100%);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -718,7 +718,7 @@ form:has(input[type="password"]) {
 }
 
 .btn-save-settings:active{
-    background: linear-gradient(135deg, #254c73 0%, #1a3a54 100%);
+    background: linear-gradient(135deg, #3f4a5a 0%, #1a3a54 100%);
     transform: scale(0.98);
 }
 /* スマホ対応 */
