@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}設定 - my pace{% endblock %}
+{% block title %}Settings - my pace{% endblock %}
 
 {% block content %}
 <div class="setting-container">
-    <h2>アプリ設定</h2>
+    <h2>Settings</h2>
 
     {% if messages %}
         <div class="success-box">
@@ -18,7 +18,7 @@
         <div class="setting-card">
             <div class="setting-row">
                 <label class="switch-label">
-                    AIアドバイス機能
+                    AIからのアドバイス機能
                     <input type="checkbox" name="is_advice_enabled" {% if profile.is_advice_enabled %}checked{% endif %}>
                 </label>
             </div>

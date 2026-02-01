@@ -15,7 +15,7 @@
             {% if user.is_authenticated %}
             <div class="header-left">
                 <a href="{% url 'setting' %}" class="setting-icon-link">
-                    <i class="fa-solid fa-gear fa-2xl" style="color: #f0f5f9;"></i>
+                    <i class="fa-solid fa-gear fa-2xl" style="color: #f2f7f8;"></i>
                 </a>
             </div>
 
@@ -38,13 +38,13 @@
 
                 <nav class="hamburger-menu">
                     <ul class="menu-list">
-                        <li><a href="{% url 'index' %}"><i class="fa-solid fa-book fa-xl" style="color: #f0f5f9;"></i> Your Diaries</a></li>
-                        <li><a href="{% url 'diary_write' %}"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #f0f5f9;"></i> Write Diary</a></li>
-                        <li><a href="{% url 'daily_topic' %}"><i class="fa-solid fa-comments fa-lg" style="color: #f0f5f9;"></i> Daily Topic</a></li>
+                        <li><a href="{% url 'index' %}"><i class="fa-solid fa-book fa-xl" style="color: #f2f7f8;"></i> Your Diaries</a></li>
+                        <li><a href="{% url 'diary_write' %}"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #f2f7f8;"></i> Write Diary</a></li>
+                        <li><a href="{% url 'daily_topic' %}"><i class="fa-solid fa-comments fa-lg" style="color: #f2f7f8;"></i> Daily Topic</a></li>
                         <li>
                             <form action="{% url 'logout' %}" method="post">
                                 {% csrf_token %}
-                                <button type="submit" class="logout-link"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #f0f5f9;"></i> Logout</button>
+                                <button type="submit" class="logout-link"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #f2f7f8;"></i> Logout</button>
                             </form>
                         </li>
                     </ul>
