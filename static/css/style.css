@@ -185,7 +185,7 @@
     margin-bottom: 20px;
     border-radius: 8px;
     font-size: 14px;
-    background: #Fee;
+    background: #fee;
     color: rgb(206, 68, 68);
     border-left: 4px solid #c33;
     text-align: center;
@@ -250,6 +250,11 @@
 
 .write-link-area{
     margin-bottom: 24px;
+    width: 100%;
+}
+
+.write-link-area a{
+    display: block;
 }
 
 .btn-write{
@@ -266,6 +271,8 @@
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
     -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    box-sizing: border-box;
 }
 .btn-write:active{
     background:#2e6897;
@@ -304,7 +311,7 @@
     gap: 8px;
     margin-bottom: 12px;
     font-size: 14px;
-    columns: #254c73;
+    color: #254c73;
 }
 
 .date-range input[type="date"]{
@@ -405,7 +412,7 @@
     text-align: center;
     padding: 40px 20px;
     color: #999;
-    font-size: 14px
+    font-size: 14px;
 }
 
 .write-container{
@@ -475,7 +482,89 @@
 
 .btn-save:active{
     background: #527dac;
-    transform: scale(0.98)
+    transform: scale(0.98);
+}
+.diary-detail{
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #F0F5F9;
+    min-height: 100vh;
+}
+
+.diary-detail header{
+    margin-bottom: 24px;
+}
+
+.diary-detail header h2{
+    font-size: 24px;
+    font-weight: 600;
+    color: #254c73;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+.content-box{
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(37, 76, 115, 0.08);
+}
+
+.content-box h3{
+    font-size: 16px;
+    font-weight: 600;
+    color: #254c73;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #cfdde9;
+}
+
+.content-box .text{
+    font-size: 15px;
+    line-height: 1.8;
+    color: #333;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.user-record{
+    border-left: 4px solid #527dac;
+}
+
+.ai-feedback{
+    border-left: 4px solid #5cad82;
+    background: #f8fefb;
+}
+
+.ai-feedback h3{
+    color: #2d7a5c;
+}
+
+.footer-nav{
+    margin-top: 24px;
+}
+
+.btn-back{
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #527dac;
+    background: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #cfdde9;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-back:active{
+    background: #f8f9fa;
+    border-color: #527dac;
+    transform: scale(0.98);
 }
 
 /* スマホ対応 */
@@ -483,13 +572,15 @@
     .user-create-container,
     .login-container,
     .index-container,
-    .write-container {
+    .write-container,
+    .diary-detail {
         padding: 20px 16px;
     }
 
     .user-create-container h2,
     .login-container h2,
-    .write-container h2 {
+    .write-container h2,
+    .diary-detail header h2 {
         font-size: 22px;
     }
 
@@ -506,5 +597,11 @@
     .write-container textarea{
         font-size: 15px;
         padding: 14px;
+    }
+    .content-box{
+        padding: 16px;
+    }
+    .content-box .text{
+        font-size: 14px;
     }
 }
