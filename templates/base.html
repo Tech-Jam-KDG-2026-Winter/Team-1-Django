@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}my pace{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="app-body">
 
     <header class="app-header">
         <div class="header-container">
             {% if user.is_authenticated %}
+            <div class="header-left">
+                <a href="{% url 'setting' %}" class="setting-icon-link">
+                    <i class="fa-solid fa-gear fa-2xl" style="color: #f0f5f9;"></i>
+                </a>
+            </div>
+
             <h1 class="app-title">
                 <a href="{% url 'index' %}">
                     <img src="{% static 'img/logo.png' %}" alt="アプリロゴ" class="app-logo">
@@ -31,14 +38,13 @@
 
                 <nav class="hamburger-menu">
                     <ul class="menu-list">
-                        <li><a href="{% url 'index' %}">日記一覧</a></li>
-                        <li><a href="{% url 'diary_write' %}">今日の日記</a></li>
-                        <li><a href="{% url 'daily_topic' %}">今日の話題</a></li>
-                        <li><a href="{% url 'setting' %}">設定</a></li>
+                        <li><a href="{% url 'index' %}"><i class="fa-solid fa-book fa-xl" style="color: #f0f5f9;"></i> Your Diaries</a></li>
+                        <li><a href="{% url 'diary_write' %}"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #f0f5f9;"></i> Write Diary</a></li>
+                        <li><a href="{% url 'daily_topic' %}"><i class="fa-solid fa-comments fa-lg" style="color: #f0f5f9;"></i> Daily Topic</a></li>
                         <li>
                             <form action="{% url 'logout' %}" method="post">
                                 {% csrf_token %}
-                                <button type="submit" class="logout-link">ログアウト</button>
+                                <button type="submit" class="logout-link"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #f0f5f9;"></i> Logout</button>
                             </form>
                         </li>
                     </ul>
