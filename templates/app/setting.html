@@ -19,17 +19,17 @@
             <div class="setting-row">
                 <label class="switch-label">
                     AIアドバイス機能
-                    <input type="checkbox" name="ai_enabled" {% if profile.ai_enabled %}checked{% endif %}>
+                    <input type="checkbox" name="is_advice_enabled" {% if profile.is_advice_enabled %}checked{% endif %}>
                 </label>
             </div>
             
             <div class="setting-description">
                 <p class="description-title">アドバイス機能をONにすると？</p>
-                <p>通常の返信に加え、あなたの記録に基づいた「健康についてのアドバイス」が追加されます。</p>
+                <p>通常の返信に加え、あなたの日記に基づいた「健康についてのアドバイス」が追加されます。</p>
             </div>
         </div>
         
-        <button type="submit" class="btn-save-settings">設定を保存する</button>
+        <button type="submit" class="btn-save-settings">設定を保存</button>
     </form>
 </div>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}日記一覧 - my pace{% endblock %}
+{% block title %}Your Diaries - my pace{% endblock %}
 
 {% block content %}
 <div class="index-container">
     <div class="write-link-area">
-        <a href="{% url 'diary_write' %}" class="btn-write">今日の日記を書く</a>
+        <a href="{% url 'diary_write' %}" class="btn-write">Write Diary</a>
     </div>
 
     <section class="search-section">
@@ -14,13 +14,13 @@
                 <input type="date" name="start_date" value="{{ request.GET.start_date }}"> 〜 
                 <input type="date" name="end_date" value="{{ request.GET.end_date }}">
             </div>
-            <button type="submit" class="btn-search">検索</button>
-            <a href="{% url 'index' %}" class="btn-reset">リセット</a>
+            <button type="submit" class="btn-search">Search</button>
+            <a href="{% url 'index' %}" class="btn-reset">Reset</a>
         </form>
     </section>
 
     <section class="diary-list">
-        <h3>過去の自分の日記一覧</h3>
+        <h3>Your Diaries</h3>
         {% for diary in diaries %}
             <a href="{% url 'diary_detail' diary.pk %}" class="diary-item">
                 <span class="date">{{ diary.date|date:"Y年m月d日" }}</span>

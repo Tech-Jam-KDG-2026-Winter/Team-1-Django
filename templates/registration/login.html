@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}ログイン - my pace{% endblock %}
+{% block title %}Login - my pace{% endblock %}
 {% block content %}
 <div class="login-container">
-    <h2>ログイン</h2>
+    <h2>Login</h2>
 
     {% if form.errors %}
         <p class="error-msg">ユーザー名かパスワードが正しくありません。</p>
@@ -22,7 +22,7 @@
     </form>
 
     <div class="login-footer">
-        <p>アカウントをお持ちでない方は <a href="{% url 'user_create' %}">新規登録</a></p>
+        <p>アカウントをお持ちでない方は <a href="{% url 'user_create' %}">Signup</a></p>
     </div>
 </div>
 {% endblock %}
