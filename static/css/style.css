@@ -1,4 +1,16 @@
 @charset "UTF-8";
+
+body {
+    font-family: "Zen Maru Gothic", sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
 /* 会員登録画面 */
 .user-create-container{
     max-width: 100%;
