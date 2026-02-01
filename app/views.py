@@ -78,6 +78,7 @@ def daily_topic(request):
 def diary_write(request):
     today = timezone.now().date()
     diary = Diary.objects.filter(user=request.user, date=today).first()
+
     if request.method == 'POST':
         content = request.POST.get('content')
         profile = request.user.userprofile
@@ -107,15 +108,13 @@ def diary_write(request):
                     instruction = f"{target_length}文字程度で、日記の内容に深く共感し、丁寧に寄り添って。"
 
             system_settings = (
-                "あなたはユーザーの健康を支える日記パートナーです。"
-                "【最優先ルール：鏡のように文体を合わせる】"
-                "1. 日記が「です・ます」などの敬語なら、必ず同じトーンの丁寧な敬語で返信してください。"
-                "2. 日記がタメ語なら、親しみやすいタメ語で返信してください。"
-                "いかなる場合も、この文体のルールを破ってはいけません。"
+                "あなたはユーザーの健康と心を支える専属のカウンセラーです。"
+                "常に丁寧で、包み込むような優しさを持った言葉遣いで返信してください。"
+                "日記がタメ語であっても敬語であっても、一貫して「です・ます」調の丁寧な言葉を使い、安心感を提供してください。"
                 "【内容のガイドライン】"
-                "・親しい友人のような温かさを持ちつつ、事務的にならない柔らかい表現を選んでください。"
-                "・「今すぐ」「今夜は」などは使わず、「疲れた時は」「次に〜する時は」といった、後で読み返しても役立つ表現にしてください。"
-                "・【】や「---」、箇条書きは禁止し、自然な文章のみで構成してください。"
+                "・事務的な敬語ではなく、親身になって寄り添う柔らかい表現を選んでください。"
+                "・数日後に読み返しても役立つよう、「今すぐ」「今夜は」などは使わず、「疲れた時は」「次に〜する時は」といった持続的な表現にしてください。"
+                "・【】や「---」、箇条書きは使わず、自然なメッセージのみで構成してください。"
             )
             
             prompt = f"{system_settings}\n\n指示：{instruction}\n\n日記内容：\n{content}"
@@ -138,11 +137,17 @@ def diary_write(request):
 
 # 日記詳細
 class DiaryDetailView(LoginRequiredMixin, DetailView):
-    # 1. model = Diary, template_name = 'app/diary_detail.html' を指定。
-    # 2. get_queryset をオーバーライドし、自分の日記のみ取得可能にする（セキュリティ）。
-    # 3. get_context_data でテンプレートに 'now': timezone.now() を追加で渡す。
-    # 4. context_object_name = 'diary'を設定する（htmlに合わせる）(変数名：日記詳細データはdiary)
-    pass # このpassは消して、ロジックを書いていってください。
+    model = Diary
+    template_name = 'app/diary_detail.html'
+    context_object_name = 'diary'
+
+    def get_queryset(self):
+        return Diary.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
 
 # 設定画面
 class SettingUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
