@@ -1,3 +1,7 @@
+body{
+  font-family: "Zen Maru Gothic", system-ui, -apple-system, sans-serif;
+}
+
 /* ==========================
    my pace - style.css（全部）
    base.htmlに対応
@@ -8,7 +12,7 @@
 html, body { margin: 0; padding: 0; }
 body {
   font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
-  background: #F0F5F9;
+  background: #f2f7f8;
   color: #0f172a;
 }
 
@@ -18,11 +22,11 @@ body {
 /* ==========================
    Header（iPhone12Pro想定）
    背景: #254C73
-   文字/ハンバーガー: #F0F5F9
+   文字/ハンバーガー: #f2f7f8
    ========================== */
 .app-header{
-  background: #254C73;
-  color: #F0F5F9;
+  background: #87c9d0;
+  color: #f2f7f8;
 }
 
 /* 中央基準のため relative */
@@ -44,7 +48,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: .04em;
-  color: #F0F5F9;
+  color: #f2f7f8;
   text-align: center;
   white-space: nowrap;
 }
@@ -59,7 +63,7 @@ body {
 }
 
 .app-title a{
-  color: #F0F5F9;
+  color: #f2f7f8;
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
@@ -106,7 +110,7 @@ body {
   display:block;
   width: 26px;
   height: 3px;
-  background: #F0F5F9;
+  background: #f2f7f8;
   border-radius: 2px;
   position: relative;
   transition: transform .2s ease, top .2s ease, background .2s ease;
@@ -120,8 +124,8 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: #254C73;
-  color: #F0F5F9;
+  background: #87c9d0;
+  color: #f2f7f8;
   z-index: 3000;
   padding: 28px 20px;
 }
@@ -146,7 +150,7 @@ body {
 /* ×の線が消えないように明示 */
 .menu-checkbox:checked ~ .menu-icon .hamburger-line::before,
 .menu-checkbox:checked ~ .menu-icon .hamburger-line::after{
-  background: #F0F5F9;
+  background: #f2f7f8;
 }
 
 
@@ -168,7 +172,7 @@ body {
   padding: 0;
   text-align: left;
 
-  color: #F0F5F9;
+  color: #f2f7f8;
   text-decoration: none;
   background: none;
   border: none;
@@ -329,7 +333,7 @@ body {
   border-radius: 12px;
   border: none;
   background: #254C73;
-  color: #F0F5F9;
+  color: #f2f7f8;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -343,7 +347,7 @@ body {
 
 /* ==========================
    daily topic（最終版）
-   white: #F0F5F9
+   white: #f2f7f8
    navy : #254C73
    ========================== */
 
@@ -352,7 +356,7 @@ body {
   margin: 0 auto;
   padding: 18px 16px 26px;
   color: #254C73;
-  background: #F0F5F9;
+  background: #f2f7f8;
 }
 
 /* daily topic 見出し */
@@ -365,7 +369,7 @@ body {
 
 /* 上の白カード（お題） */
 .topic-text{
-  background: #F0F5F9;
+  background: #f2f7f8;
   border-radius: 10px;
   padding: 18px 16px;
   margin-bottom: 18px;
@@ -376,7 +380,7 @@ body {
 
 /* 紺枠の大きいコメント欄（画像のメイン） */
 .comment-container{
-  background: #F0F5F9;
+  background: #f2f7f8;
   border: 3px solid #254C73;
   border-radius: 8px;
   padding: 18px 16px;
@@ -437,7 +441,7 @@ body {
   padding: 16px;
   border-radius: 10px;
   border: none;
-  background: #F0F5F9;
+  background: #f2f7f8;
   box-shadow: 0 16px 24px rgba(0,0,0,.12);
   font-size: 16px;
   color: #254C73;
@@ -455,7 +459,7 @@ body {
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #254C73;
-  background: #F0F5F9;
+  background: #f2f7f8;
   color: #254C73;
   font-size: 14px;
   font-weight: 600;
@@ -465,7 +469,7 @@ body {
 /* 送信ボタン：紺背景＋白文字 */
 .comment-form button{
   background: #254C73;
-  color: #F0F5F9;
+  color: #f2f7f8;
   border: none;
 }
 
@@ -484,7 +488,7 @@ body {
    ========================== */
 
 .app-body{
-  background-color: #F0F5F9;
+  background-color: #f2f7f8;
 
   background-image:
     radial-gradient(
@@ -495,4 +499,46 @@ body {
 
   background-size: 18px 18px;
 }
+
+/* ==========================
+   未ログイン時ヘッダー
+   ========================== */
+
+/* 未ログイン時は中央ロゴだけにする */
+.app-header:not(:has(.menu-wrapper)) .header-container {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* タイトル位置をリセット */
+.app-header:not(:has(.menu-wrapper)) .app-title {
+  position: static;
+  transform: none;
+  margin: 0;
+  margin-top: -7px; 
+}
+
+/* ロゴ文字 */
+.app-header:not(:has(.menu-wrapper)) .app-title a {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  color: #f2f7f8;
+  font-size: 29px;
+}
+
+/* 日付は非表示 */
+.app-header:not(:has(.menu-wrapper)) .today-date {
+  display: none;
+}
+
+/* ロゴ画像は未ログイン時は非表示（文字だけ） */
+.app-header:not(:has(.menu-wrapper)) .app-logo {
+  display: none;
+}
+
+
 
