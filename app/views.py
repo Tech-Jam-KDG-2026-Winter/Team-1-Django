@@ -82,7 +82,7 @@ def daily_topic(request):
     # 5. コメント投稿時（POST）は、リダイレクト(redirect('daily_topic'))を使って二重投稿を防ぐこと。
         return redirect('daily_topic')
 
-    comments = ThreadComment.objects.all().order_by('created_at')
+    comments = ThreadComment.objects.filter(created_at__date=timezone.now().date()).order_by('created_at')
     # 6. テンプレートへは「今日のお題」と「コメント一覧」を渡すこと。
     # - 変数名：今日の話題はtopic
     # - 変数名：コメントのリストはcomments
