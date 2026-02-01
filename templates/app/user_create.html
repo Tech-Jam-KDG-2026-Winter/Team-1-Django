@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}会員登録 - my pace{% endblock %}
+{% block title %}Signup - my pace{% endblock %}
 
 {% block content %}
 <div class="user-create-container">
-    <h2>新規会員登録</h2>
+    <h2>Signup</h2>
     
     {% if messages %}
         <ul class="error-list">
@@ -36,7 +36,7 @@
     </form>
     
     <div class="footer-link">
-        <p>すでにアカウントをお持ちの方は<a href="{% url 'login' %}">ログイン</a></p>
+        <p>すでにアカウントをお持ちの方は<a href="{% url 'login' %}">Login</a></p>
     </div>
 </div>
 {% endblock %}

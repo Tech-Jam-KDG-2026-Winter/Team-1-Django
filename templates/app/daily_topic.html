@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}今日の話題 - my pace{% endblock %}
+{% block title %}Daily Topic - my pace{% endblock %}
 
 {% block content %}
 <div class="topic-page">
     <div class="topic-header">
-        <h3>今日のお題</h3>
+        <h3>Daily Topic</h3>
         <p class="topic-text">
             {% if topic %}
                 {{ topic.title }}
@@ -24,7 +24,7 @@
                 <p class="text">{{ comment.content }}</p>
             </div>
         {% empty %}
-            <p class="no-comment">まだコメントはありません。一番乗りに投稿してみよう！</p>
+            <p class="no-comment">まだコメントはありません。一番乗りに投稿してみませんか？</p>
         {% endfor %}
     </div>
 

@@ -151,10 +151,18 @@ class DiaryDetailView(LoginRequiredMixin, DetailView):
 
 # 設定画面
 class SettingUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    # 1. model = UserProfile, template_name = 'app/setting.html' を指定。
-    # 2. fields = ['ai_enabled'] を指定して、トグルボタンの値だけを更新対象にする。
-    # 3. get_object をオーバーライドし、URLのpkではなく「self.request.user.userprofile」を返す。
-    # 4. get_context_data でテンプレートに 'now': timezone.now() を追加で渡す。
-    # 5. context_object_name = 'profile' を設定する（htmlの変数名に合わせる）。
-    # 6. success_url = reverse_lazy('setting') で更新後に自分自身へリダイレクトさせる。
-    pass # このpassは消して、ロジックを書いていってください。
+    model = UserProfile
+    template_name = 'app/setting.html'
+    success_message = "設定を更新しました。"
+    fields = ['is_advice_enabled']
+
+    def get_object(self):
+        return self.request.user.userprofile
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+
+    context_object_name = 'profile'
+    success_url = reverse_lazy('setting')
