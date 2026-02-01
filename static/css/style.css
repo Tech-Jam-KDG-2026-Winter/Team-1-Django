@@ -1,1 +1,498 @@
-@charset "UTF-8";
+/* ==========================
+   my pace - style.css（全部）
+   base.htmlに対応
+   ========================== */
+
+/* ===== リセット/ベース ===== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background: #F0F5F9;
+  color: #0f172a;
+}
+
+/* mainがヘッダーの下に来るように */
+.app-main { padding: 16px; }
+
+/* ==========================
+   Header（iPhone12Pro想定）
+   背景: #254C73
+   文字/ハンバーガー: #F0F5F9
+   ========================== */
+.app-header{
+  background: #254C73;
+  color: #F0F5F9;
+}
+
+/* 中央基準のため relative */
+.header-container{
+  position: relative;
+  height: 72px;         /* iPhone12Proでちょうど良い */
+  padding: 0 12px;
+}
+
+/* h1の余白を消す */
+.app-title{ margin: 0; }
+
+/* 中央：日付（上） */
+.today-date{
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: #F0F5F9;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 中央：my pace（下） */
+.app-title{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.app-title a{
+  color: #F0F5F9;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  opacity: .95;
+  white-space: nowrap;
+}
+
+/* ロゴは一旦非表示（使いたくなったら display:block に） */
+.app-logo{ display: none; }
+
+/* ==========================
+   ハンバーガー → 全画面メニュー
+   （checkbox + label + nav）
+   ========================== */
+
+/* 右上配置 */
+.menu-wrapper{
+  position: absolute;
+  right: 12px;
+  top: 16px;
+  transform: none;
+  z-index: 3001;
+}
+
+/* checkboxは見せない */
+.menu-checkbox{ display: none; }
+
+/* ボタン（label） */
+.menu-icon{
+  width: 40px;
+  height: 40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index: 3002;
+}
+
+/* 線（ハンバーガー） */
+.hamburger-line,
+.hamburger-line::before,
+.hamburger-line::after{
+  content:"";
+  display:block;
+  width: 26px;
+  height: 3px;
+  background: #F0F5F9;
+  border-radius: 2px;
+  position: relative;
+  transition: transform .2s ease, top .2s ease, background .2s ease;
+}
+
+.hamburger-line::before{ position:absolute; top:-8px; }
+.hamburger-line::after { position:absolute; top: 8px; }
+
+/* メニュー本体：全画面（初期は非表示） */
+.hamburger-menu{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #254C73;
+  color: #F0F5F9;
+  z-index: 3000;
+  padding: 28px 20px;
+}
+
+/* ✅ 押したら出る（このbase.htmlの順番なら確実に効く） */
+.menu-checkbox:checked ~ .hamburger-menu{
+  display: block;
+}
+
+/* ✅ 押したら×になる（labelはnavより前なので ~ で効く） */
+.menu-checkbox:checked ~ .menu-icon .hamburger-line{
+  background: transparent;
+}
+.menu-checkbox:checked ~ .menu-icon .hamburger-line::before{
+  top: 0;
+  transform: rotate(45deg);
+}
+.menu-checkbox:checked ~ .menu-icon .hamburger-line::after{
+  top: 0;
+  transform: rotate(-45deg);
+}
+/* ×の線が消えないように明示 */
+.menu-checkbox:checked ~ .menu-icon .hamburger-line::before,
+.menu-checkbox:checked ~ .menu-icon .hamburger-line::after{
+  background: #F0F5F9;
+}
+
+
+/* メニューのリスト（大きい文字） */
+.hamburger-menu .menu-list{
+  list-style: none;
+  margin: 90px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+/* リンク/ログアウトボタン */
+.hamburger-menu .menu-list a,
+.hamburger-menu .logout-link{
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+
+  color: #F0F5F9;
+  text-decoration: none;
+  background: none;
+  border: none;
+
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+/* ← メニュー文字を少し小さく・細く（上書き） */
+.hamburger-menu .menu-list a,
+.hamburger-menu .logout-link{
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+
+/* 押した感 */
+.hamburger-menu .menu-list a:active,
+.hamburger-menu .logout-link:active{
+  opacity: .7;
+}
+
+/* formの余白消し */
+.hamburger-menu form{ margin: 0; }
+
+/* ==========================
+   未ログイン時（タイトルだけ）
+   ========================== */
+.app-header .header-container:has(.menu-wrapper) {}
+
+/* もし他ページで崩れたらここに追記していけばOK */
+
+/* ===== メニュー開いた時、×ボタンを画面右上に固定で出す ===== */
+.menu-checkbox:checked ~ .menu-icon{
+  position: fixed;
+  top: 16px;
+  right: 12px;
+  transform: none;
+  z-index: 4000;        /* navより確実に上 */
+}
+
+/* ついでに、メニューの上に余白作ってヘッダーっぽくする */
+.menu-checkbox:checked ~ .hamburger-menu{
+  padding-top: 90px;    /* 上部に空間（×が被らない） */
+}
+
+
+/* ==========================
+   今日の話題（topic-page）
+   完成版：写真の雰囲気合わせ
+   white: #F5F5F5
+   navy : #254C73
+   ========================== */
+
+/* ページ全体 */
+.topic-page{
+  max-width: 390px;       /* iPhone 12 Pro */
+  margin: 0 auto;
+  padding: 16px;
+  color: #254C73;
+}
+
+/* ===== 今日のお題 ===== */
+.topic-header h3{
+  margin: 4px 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #254C73;
+}
+
+.topic-text{
+  background: #F5F5F5;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 18px;
+  line-height: 1.6;
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+/* ===== コメント一覧 枠 ===== */
+.comment-container{
+  background: #F5F5F5;
+  border: 3px solid #254C73;
+  border-radius: 10px;
+  padding: 16px 14px;
+  min-height: 420px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.14);
+}
+
+/* ===== コメント1件 ===== */
+.comment-bubble{
+  margin-bottom: 20px;
+}
+
+/* ユーザー名＋時間 */
+.comment-info{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 6px;
+  color: #254C73;
+}
+
+.comment-info .user{
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.comment-info .time{
+  font-size: 13px;
+  opacity: .7;
+}
+
+/* コメント本文 */
+.comment-bubble .text{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #254C73;
+  word-break: break-word;
+}
+
+/* コメントなし */
+.no-comment{
+  margin: 0;
+  font-size: 14px;
+  color: rgba(37,76,115,.6);
+}
+
+/* ===== コメント入力 ===== */
+.comment-form{
+  margin-top: 16px;
+}
+
+.comment-form input[type="text"]{
+  width: 100%;
+  height: 52px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 2px solid rgba(37,76,115,.25);
+  background: #F5F5F5;
+  color: #254C73;
+  font-size: 15px;
+  outline: none;
+  box-shadow: 0 8px 18px rgba(0,0,0,.10);
+}
+
+.comment-form input[type="text"]::placeholder{
+  color: rgba(37,76,115,.45);
+}
+
+/* 送信ボタン */
+.comment-form button{
+  margin-top: 10px;
+  width: 120px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: #254C73;
+  color: #F0F5F9;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,.16);
+}
+
+.comment-form button:active{
+  transform: translateY(1px);
+  opacity: .9;
+}
+
+/* ==========================
+   daily topic（最終版）
+   white: #F0F5F9
+   navy : #254C73
+   ========================== */
+
+.topic-page{
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 18px 16px 26px;
+  color: #254C73;
+  background: #F0F5F9;
+}
+
+/* daily topic 見出し */
+.topic-header h3{
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #254C73;
+}
+
+/* 上の白カード（お題） */
+.topic-text{
+  background: #F0F5F9;
+  border-radius: 10px;
+  padding: 18px 16px;
+  margin-bottom: 18px;
+  min-height: 56px;
+  box-shadow: 0 16px 24px rgba(0,0,0,.12);
+  color: #254C73;
+}
+
+/* 紺枠の大きいコメント欄（画像のメイン） */
+.comment-container{
+  background: #F0F5F9;
+  border: 3px solid #254C73;
+  border-radius: 8px;
+  padding: 18px 16px;
+  min-height: 520px;
+  box-shadow: 0 16px 24px rgba(0,0,0,.12);
+}
+
+/* コメント1件 */
+.comment-bubble{
+  margin-bottom: 26px;
+}
+
+/* ユーザー名＋投稿時間 */
+.comment-info{
+  display: flex;
+  gap: 28px;
+  margin-bottom: 10px;
+  color: #254C73;
+  font-weight: 700;
+}
+
+.comment-info .user,
+.comment-info .time{
+  font-size: 18px;
+}
+
+/* コメント本文 */
+.comment-bubble .text{
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #254C73;
+}
+
+/* コメントなし */
+.no-comment{
+  font-size: 16px;
+  color: #254C73;
+  opacity: .75;
+}
+
+/* comment 見出し（HTMLにある場合） */
+.comment-title{
+  margin: 18px 0 12px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #254C73;
+}
+
+/* 下の入力欄（白カード） */
+.comment-form{
+  margin-top: 18px;
+}
+
+.comment-form input[type="text"]{
+  width: 100%;
+  height: 74px;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #F0F5F9;
+  box-shadow: 0 16px 24px rgba(0,0,0,.12);
+  font-size: 16px;
+  color: #254C73;
+  outline: none;
+}
+
+.comment-form input::placeholder{
+  color: #254C73;
+  opacity: .55;
+}
+
+/* 送信ボタン（控えめ・統一） */
+.comment-form button{
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #254C73;
+  background: #F0F5F9;
+  color: #254C73;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* 送信ボタン：紺背景＋白文字 */
+.comment-form button{
+  background: #254C73;
+  color: #F0F5F9;
+  border: none;
+}
+
+
+
+  /* 設定ロゴ　調整 */
+  .header-left{
+  position: relative;
+  top: 26px; /* ← 数字を増やすほど下に下がる */
+  left: 5px; 
+}
+
+/* ==========================
+   うっすらドット（正解版）
+   app-body に適用
+   ========================== */
+
+.app-body{
+  background-color: #F0F5F9;
+
+  background-image:
+    radial-gradient(
+      rgba(37, 76, 115, 0.06) → 0.12
+
+      transparent 0.6px
+    );
+
+  background-size: 18px 18px;
+}
+
