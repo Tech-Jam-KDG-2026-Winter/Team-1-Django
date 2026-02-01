@@ -2,25 +2,48 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.contrib.auth import get_user_model
 from .models import UserProfile, Diary, DailyThread, ThreadComment
 from google import genai
 from django.conf import settings
 
+User = get_user_model()
+
 # Django標準（django.contrib.auth.urls）を使うのでログイン/ログアウトViewは今回は書きません。
 
-# ユーザー新規登録画面（ログイン不要）
+# ユーザー新規登録画面（登録後ログイン画面へ遷移するためログイン不要）
 def user_create(request):
-    # 1. フォームから「ユーザー名」「パスワード」「確認用パスワード」を取得。
-    # 2. パスワードが一致するか確認。
-    # 3. User.objects.create_user() で auth_user に保存。
-    # 4. 同時に UserProfile.objects.create(user=user) でプロフィールも作成。
-    # 5. 保存後、ログイン画面へ遷移させる。
-    # - 「すでにこのユーザー名は使われています」というエラーを画面に出す(unique制約があるため)
-    # - auth_user に保存する際は、パスワードをハッシュ化（暗号化）して保存してくれる User.objects.create_user() を使う
-    # - 変数名：エラーメッセージはmessages（django.contrib.messages を使用）
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        pass1 = request.POST.get('password')
+        pass2 = request.POST.get('password_confirm')
+        ai_enabled = request.POST.get('ai_enabled') == 'on'
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "このユーザー名はすでに使われています。")
+            return render(request, 'app/user_create.html')
+        if pass1 != pass2:
+            messages.error(request, "パスワードが一致しません。")
+            return render(request, 'app/user_create.html')
+        
+        try:
+            user = User.objects.create_user(username=username, password=pass1)
+            UserProfile.objects.create(
+                user=user,
+                is_advice_enabled=ai_enabled
+            )
+
+            messages.success(request, "登録が完了しました！ログインしてください。")
+            return redirect('login')
+
+        except Exception as e:
+            messages.error(request, f"エラーが発生しました: {e}")
+            return render(request, 'app/user_create.html')
+
     return render(request, 'app/user_create.html')
 
 # メイン機能（ログイン必須）
@@ -106,18 +129,12 @@ def diary_write(request):
             diary.save()
 
         except Exception as e:
-            print(f"!!! エラー発生: {e}")
-            diary.ai_response = f"（エラー）: {e}"
+            diary.ai_response = f"エラーが発生しました: {e}"
             diary.save()
 
         return redirect('index')
 
-    return render(request, 'app/diary_write.html', {
-        'now': timezone.now(),
-        'diary': diary
-    })
-
-    return render(request, 'app/diary_write.html', {'now': timezone.now()})
+    return render(request, 'app/diary_write.html', {'now': timezone.now(), 'diary': diary})
 
 # 日記詳細
 class DiaryDetailView(LoginRequiredMixin, DetailView):
