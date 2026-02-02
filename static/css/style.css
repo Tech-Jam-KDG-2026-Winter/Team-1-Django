@@ -202,7 +202,9 @@ body {
 /* ==========================
    未ログイン時（タイトルだけ）
    ========================== */
-.app-header .header-container:has(.menu-wrapper) {}
+.app-header .header-container:has(.menu-wrapper) {
+    
+}
 
 /* もし他ページで崩れたらここに追記していけばOK */
 
