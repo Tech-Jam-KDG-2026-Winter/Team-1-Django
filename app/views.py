@@ -193,16 +193,15 @@ class DiaryDetailView(LoginRequiredMixin, DetailView):
 class SettingUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = UserProfile
     template_name = 'app/setting.html'
-    success_message = "設定を更新しました。"
-    fields = ['is_advice_enabled']
+    fields = ['is_advice_enabled']         # ← クラス属性
+    context_object_name = 'profile'       # ← クラス属性
+    success_url = reverse_lazy('setting') # ← クラス属性
+    success_message = "設定を更新しました."
 
     def get_object(self):
         return self.request.user.userprofile
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
+        context['now'] = timezone.now()    # ← 関数内で now をセット
         return context
-
-    context_object_name = 'profile'
-    success_url = reverse_lazy('setting')
