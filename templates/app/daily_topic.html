@@ -27,12 +27,6 @@
             <p class="no-comment">まだコメントはありません。一番乗りに投稿してみませんか？</p>
         {% endfor %}
     </div>
-    {% empty %}
-    <p class="no-comment">
-      まだコメントはありません。一番乗りに投稿してみよう！
-    </p>
-    {% endfor %}
-  </div>
 
   <form method="post" class="comment-form">
     {% csrf_token %}
