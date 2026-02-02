@@ -1,7 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
-
 class SettingUpdateView(UpdateView):
     model = User
     fields = ['is_advice']
