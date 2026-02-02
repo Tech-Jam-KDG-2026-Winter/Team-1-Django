@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # ユーザーのAIスタンス設定
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # True: 褒める＋アドバイス / False: 褒めるだけ
+    # True: 共感＋アドバイス / False: 共感だけ
     is_advice_enabled = models.BooleanField(default=False)
 
     def __str__(self):
