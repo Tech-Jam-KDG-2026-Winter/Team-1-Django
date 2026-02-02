@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
-{% block title %}今日の話題 - my pace{% endblock %}
+{% block title %}Daily Topic - my pace{% endblock %}
 
 {% block content %}
 <div class="topic-page">
     <div class="topic-header">
-        <h3>今日のお題</h3>
-        <p class="topic-text">{{ topic.content }}</p>
+        <h3>Daily Topic</h3>
+        <p class="topic-text">
+            {% if topic %}
+                {{ topic.title }}
+            {% else %}
+                今日のお題はまだ準備中です。
+            {% endif %}
+        </p>
     </div>
 
     <div id="chat-area" class="comment-container">
         {% for comment in comments %}
             <div class="comment-bubble">
-                <span class="user">{{ comment.user.username }}</span>
-                <p class="text">{{ comment.text }}</p>
+                <div class="comment-info">
+                    <span class="user">{{ comment.user.username }}</span>
+                    <small class="time">{{ comment.created_at|date:"H:i" }}</small>
+                </div>
+                <p class="text">{{ comment.content }}</p>
             </div>
+        {% empty %}
+            <p class="no-comment">まだコメントはありません。一番乗りに投稿してみませんか？</p>
         {% endfor %}
     </div>
 
