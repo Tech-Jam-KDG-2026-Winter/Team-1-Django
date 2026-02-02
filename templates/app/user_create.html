@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}会員登録 - my pace{% endblock %}
+{% block title %}Signup - my pace{% endblock %}
 
 {% block content %}
 <div class="user-create-container">
-    <h2>新規会員登録</h2>
+    <h2>Signup</h2>
     
     {% if messages %}
         <ul class="error-list">
@@ -29,13 +29,14 @@
         </div>
         <div class="form-group">
             <label>AIアドバイス機能:</label>
-            <input type="checkbox" name="ai_enabled" checked> 最初からONにする
+            <input type="checkbox" name="ai_enabled" checked> ON
+            <p>※設定からいつでも変更できます</p>
         </div>
         <button type="submit" class="btn-submit">新規登録</button>
     </form>
     
     <div class="footer-link">
-        <a href="{% url 'login' %}">ログイン画面はこちら</a>
+        <p>すでにアカウントをお持ちの方は<a href="{% url 'login' %}">Login</a></p>
     </div>
 </div>
 {% endblock %}

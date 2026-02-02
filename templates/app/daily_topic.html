@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}今日の話題 - my pace{% endblock %}
+{% block title %}Daily Topic - my pace{% endblock %}
 
 {% block content %}
 <div class="topic-page">
     <div class="topic-header">
-        <h3>今日のお題</h3>
+        <h3>Daily Topic</h3>
         <p class="topic-text">
             {% if topic %}
                 {{ topic.title }}
@@ -24,139 +24,19 @@
                 <p class="text">{{ comment.content }}</p>
             </div>
         {% empty %}
-            <p class="no-comment">まだコメントはありません。一番乗りに投稿してみよう！</p>
+            <p class="no-comment">まだコメントはありません。一番乗りに投稿してみませんか？</p>
         {% endfor %}
     </div>
 
-    <form method="post" class="comment-form">
-        {% csrf_token %}
-        <input type="text" name="comment" placeholder="メッセージを入力..." required>
-        <button type="submit">送信</button>
-    </form>
+  <form method="post" class="comment-form">
+    {% csrf_token %}
+    <input
+      type="text"
+      name="comment"
+      placeholder="メッセージを入力..."
+      required
+    />
+    <button type="submit">送信</button>
+  </form>
 </div>
 {% endblock %}
-
-/* ==========================
-   今日の話題（topic-page）
-   完成版：写真の雰囲気合わせ
-   white: #F5F5F5
-   navy : #254C73
-   ========================== */
-
-/* ページ全体 */
-.topic-page{
-  max-width: 390px;       /* iPhone 12 Pro */
-  margin: 0 auto;
-  padding: 16px;
-  color: #254C73;
-}
-
-/* ===== 今日のお題 ===== */
-.topic-header h3{
-  margin: 4px 0 10px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #254C73;
-}
-
-.topic-text{
-  background: #F5F5F5;
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 18px;
-  line-height: 1.6;
-  box-shadow: 0 8px 18px rgba(0,0,0,.12);
-}
-
-/* ===== コメント一覧 枠 ===== */
-.comment-container{
-  background: #F5F5F5;
-  border: 3px solid #254C73;
-  border-radius: 10px;
-  padding: 16px 14px;
-  min-height: 420px;
-  box-shadow: 0 10px 22px rgba(0,0,0,.14);
-}
-
-/* ===== コメント1件 ===== */
-.comment-bubble{
-  margin-bottom: 20px;
-}
-
-/* ユーザー名＋時間 */
-.comment-info{
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 6px;
-  color: #254C73;
-}
-
-.comment-info .user{
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.comment-info .time{
-  font-size: 13px;
-  opacity: .7;
-}
-
-/* コメント本文 */
-.comment-bubble .text{
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #254C73;
-  word-break: break-word;
-}
-
-/* コメントなし */
-.no-comment{
-  margin: 0;
-  font-size: 14px;
-  color: rgba(37,76,115,.6);
-}
-
-/* ===== コメント入力 ===== */
-.comment-form{
-  margin-top: 16px;
-}
-
-.comment-form input[type="text"]{
-  width: 100%;
-  height: 52px;
-  padding: 0 14px;
-  border-radius: 12px;
-  border: 2px solid rgba(37,76,115,.25);
-  background: #F5F5F5;
-  color: #254C73;
-  font-size: 15px;
-  outline: none;
-  box-shadow: 0 8px 18px rgba(0,0,0,.10);
-}
-
-.comment-form input[type="text"]::placeholder{
-  color: rgba(37,76,115,.45);
-}
-
-/* 送信ボタン */
-.comment-form button{
-  margin-top: 10px;
-  width: 120px;
-  height: 44px;
-  border-radius: 12px;
-  border: none;
-  background: #254C73;
-  color: #f2f7f8;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0,0,0,.16);
-}
-
-.comment-form button:active{
-  transform: translateY(1px);
-  opacity: .9;
-}
-body{ background: #ff0000 !important; }
