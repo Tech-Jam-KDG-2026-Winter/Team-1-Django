@@ -111,7 +111,7 @@ def daily_topic(request):
     # 6. テンプレートへは「今日のお題」と「コメント一覧」を渡すこと。
     # - 変数名：今日の話題はtopic
     # - 変数名：コメントのリストはcomments
-    return render(request, 'app/daily_topic.html', {'topic': topic, 'comments':comments})
+    return render(request, 'app/daily_topic.html', {'topic': topic, 'comments':comments, 'now': timezone.now()})
 
 # 日記を書く（作成・更新）画面
 @login_required

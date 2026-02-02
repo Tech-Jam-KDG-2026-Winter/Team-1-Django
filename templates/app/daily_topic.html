@@ -24,19 +24,25 @@
                 <p class="text">{{ comment.content }}</p>
             </div>
         {% empty %}
-            <p class="no-comment">まだコメントはありません。一番乗りに投稿してみませんか？</p>
+            {% if topic %}
+                <p class="no-comment">まだコメントはありません。一番乗りに投稿してみませんか？</p>
+            {% else %}
+                <p class="no-comment">お題の発表をお待ちください。</p>
+            {% endif %}
         {% endfor %}
     </div>
 
-  <form method="post" class="comment-form">
-    {% csrf_token %}
-    <input
-      type="text"
-      name="comment"
-      placeholder="メッセージを入力..."
-      required
-    />
-    <button type="submit">送信</button>
-  </form>
+  {% if topic %}
+    <form method="post" class="comment-form">
+        {% csrf_token %}
+        <input
+        type="text"
+        name="comment"
+        placeholder="メッセージを入力..."
+        required
+        />
+        <button type="submit">送信</button>
+    </form>
+  {% endif %}
 </div>
 {% endblock %}
