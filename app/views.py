@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from .models import UserProfile, Diary, DailyThread, ThreadComment
+from datetime import timedelta
+from django.db.models import Q
 from google import genai
 from django.conf import settings
 
@@ -53,25 +55,63 @@ def user_create(request):
 @login_required
 def index(request):
     # 1. 前日の日付を取得 (yesterday = timezone.now().date() - timedelta(days=1))
+    yesterday = timezone.now().date() - timedelta(days=1)
     # 2. ログインユーザーの日記のうち、「昨日以前（date <= yesterday）」のものを取得。
     # 3. 順序は date降順（昨日のものが1番上）。
+    diaries = Diary.objects.filter(
+        user = request.user,
+        date__lte = yesterday
+    ).order_by("-date")
+
     # 4. 検索フォームの処理（キーワード・期間）はこの「昨日以前」のデータに対して行う。
+    q = request.GET.get('q')
+    start = request.GET.get('start_date')
+    end = request.GET.get('end_date')
+
+    if q:
+        # キーワードが本文(content)かAI返信に含まれるか
+        diaries = diaries.filter(Q(content__icontains=q) | Q(ai_response__icontains=q))
+    if start:
+        diaries = diaries.filter(date__gte=start)
+    if end:
+        diaries = diaries.filter(date__lte=end)
+    
     # 5. テンプレートへは取得した日記リストを渡して表示させること。
+    context = {
+        'diaries': diaries,
+        'now': timezone.now()
+    }
+   
     # - 変数名：日記のリスト名はdiaries
-    return render(request, 'app/index.html', {'now': timezone.now()})
+    return render(request, 'app/index.html', context)
 
 # 今日の話題画面
 @login_required
 def daily_topic(request):
     # 1. DailyThread から今日の日付の「話題」を1件取得（30文字以内）。
+    topic = DailyThread.objects.filter(date=timezone.now().date()).first()
+ 
     # 2. 掲示板コメントを created_at昇順（古いものが上）で全件取得。
+
     # 3. コメント投稿フォームを画面下部に設置し、投稿時は投稿者と内容を保存。
+    if request.method == 'POST':
+        comment_text = request.POST.get('comment')
+        if comment_text and request.user.is_authenticated:
+            # 投稿者(user)と内容(text)を保存
+            ThreadComment.objects.create(
+                thread = topic,
+                user=request.user, 
+                content=comment_text
+            )
     # 4. ※画面を開いた時に1番下までスクロールさせる処理はJSで書く。
     # 5. コメント投稿時（POST）は、リダイレクト(redirect('daily_topic'))を使って二重投稿を防ぐこと。
+        return redirect('daily_topic')
+
+    comments = ThreadComment.objects.filter(created_at__date=timezone.now().date()).order_by('created_at')
     # 6. テンプレートへは「今日のお題」と「コメント一覧」を渡すこと。
     # - 変数名：今日の話題はtopic
     # - 変数名：コメントのリストはcomments
-    return render(request, 'app/daily_topic.html', {'now': timezone.now()})
+    return render(request, 'app/daily_topic.html', {'topic': topic, 'comments':comments})
 
 # 日記を書く（作成・更新）画面
 @login_required
