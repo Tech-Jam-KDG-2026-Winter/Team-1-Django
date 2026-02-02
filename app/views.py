@@ -1,12 +1,3 @@
-
-class SettingUpdateView(UpdateView):
-    model = User
-    fields = ['is_advice']
-    template_name = 'setting_update.html'
-
-    def get_object(self):
-        return self.request.user
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView
@@ -120,7 +111,7 @@ def daily_topic(request):
     # 6. テンプレートへは「今日のお題」と「コメント一覧」を渡すこと。
     # - 変数名：今日の話題はtopic
     # - 変数名：コメントのリストはcomments
-    return render(request, 'app/daily_topic.html', {'topic': topic, 'comments':comments})
+    return render(request, 'app/daily_topic.html', {'topic': topic, 'comments':comments, 'now': timezone.now()})
 
 # 日記を書く（作成・更新）画面
 @login_required
@@ -191,14 +182,12 @@ class DiaryDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'diary'
 
     def get_queryset(self):
-        # ログインユーザー本人の日記だけ取得できるようにする
         return Diary.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
-
 
 # 設定画面
 class SettingUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
