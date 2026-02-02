@@ -5,9 +5,17 @@
 <div class="write-container">
     <h2>Write Today's Diary</h2>
     <p class="info">24時までは何度でも上書き保存可能です。</p>
+    {% if messages %}
+        <div class="success-box">
+            {% for message in messages %}
+                <p class="msg">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <form method="post" id="diary-form">
         {% csrf_token %}
+        <input type="hidden" name="opened_date" value="{{ now|date:'Y-m-d' }}">
         <div class="form-group">
             <textarea name="content" id="diary-textarea" rows="12" placeholder="今日はどんな一日でしたか？" required>{% if diary %}{{ diary.content }}{% endif %}</textarea>
         </div>

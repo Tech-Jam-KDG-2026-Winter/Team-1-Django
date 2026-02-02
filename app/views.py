@@ -12,6 +12,7 @@ from datetime import timedelta
 from django.db.models import Q
 from google import genai
 from django.conf import settings
+from datetime import datetime
 
 User = get_user_model()
 
@@ -116,18 +117,25 @@ def daily_topic(request):
 # 日記を書く（作成・更新）画面
 @login_required
 def diary_write(request):
-    today = timezone.now().date()
+    today = timezone.localdate()
     diary = Diary.objects.filter(user=request.user, date=today).first()
 
     if request.method == 'POST':
         content = request.POST.get('content')
         profile = request.user.userprofile
-
+        date_str = request.POST.get('opened_date')
+        target_date = datetime.strptime(date_str, '%Y-%m-%d').date() if date_str else timezone.localdate()
+        
         diary, created = Diary.objects.update_or_create(
             user=request.user,
-            date=today,
+            date=target_date, # 今の実時刻ではなく、書き始めた時の日付で保存
             defaults={'content': content}
         )
+
+        if created:
+            messages.success(request, "日記を保存しました。返信は明日届きます。")
+        else:
+            messages.success(request, "日記を更新しました。返信は明日届きます。")
 
         try:
             client = genai.Client(api_key=settings.GEMINI_API_KEY)
@@ -171,7 +179,7 @@ def diary_write(request):
             diary.ai_response = f"エラーが発生しました: {e}"
             diary.save()
 
-        return redirect('index')
+        return redirect('diary_write')
 
     return render(request, 'app/diary_write.html', {'now': timezone.now(), 'diary': diary})
 
@@ -196,7 +204,7 @@ class SettingUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     fields = ['is_advice_enabled']         # ← クラス属性
     context_object_name = 'profile'       # ← クラス属性
     success_url = reverse_lazy('setting') # ← クラス属性
-    success_message = "設定を更新しました."
+    success_message = "設定を更新しました。"
 
     def get_object(self):
         return self.request.user.userprofile
