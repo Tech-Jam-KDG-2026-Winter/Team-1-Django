@@ -49,7 +49,10 @@
                         </li>
                         {% if user.is_staff %}
                         <li>
-                            <a href="/admin/" target="_blank"><i class="fa-solid fa-user-shield fa-lg" style="color: #f2f7f8;"></i> Admin Page</a>
+                            <a href="{% url 'admin_topic' %}"><i class="fa-solid fa-list-check fa-xl" style="color: #f2f7f8;"></i> Topic Manage</a>
+                        </li>
+                        <li>
+                            <a href="/admin/" target="_blank"><i class="fa-solid fa-user-shield fa-lg" style="color: #f2f7f8;"></i> Django Admin</a>
                         </li>
                         {% endif %}
                     </ul>

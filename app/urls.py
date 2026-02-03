@@ -8,4 +8,6 @@ urlpatterns = [
     path('topic/', views.daily_topic, name='daily_topic'),
     path('setting/', views.SettingUpdateView.as_view(), name='setting'),
     path('signup/', views.user_create, name='user_create'),
+    path('manage-topics/', views.admin_topic, name='admin_topic'),
+    path('manage-topics/edit/<int:pk>/', views.admin_topic, name='admin_topic_edit'),
 ]
