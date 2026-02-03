@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from .models import UserProfile, Diary, DailyThread, ThreadComment
@@ -213,3 +214,38 @@ class SettingUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()    # ← 関数内で now をセット
         return context
+
+# 管理者：お題管理
+@staff_member_required
+def admin_topic(request, pk=None):
+    topic_edit = None
+    if pk:
+        topic_edit = get_object_or_404(DailyThread, id=pk)
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        date_str = request.POST.get('date')
+        
+        if len(title) > 30:
+            messages.error(request, "お題は30文字以内で入力してください。")
+        else:
+            existing_topic = DailyThread.objects.filter(date=date_str).exclude(id=pk).exists()
+            
+            if existing_topic:
+                messages.error(request, "登録できるお題は1日につき1つです。すでにその日付にはお題が存在します。")
+            else:
+                DailyThread.objects.update_or_create(
+                    id=pk,
+                    defaults={'title': title, 'date': date_str}
+                )
+                messages.success(request, "お題を更新しました。" if pk else "新しいお題を登録しました。")
+                return redirect('admin_topic')
+
+    topics = DailyThread.objects.all().order_by('-date')
+    
+    context = {
+        'topics': topics,
+        'topic_edit': topic_edit,
+        'now': timezone.now(),
+    }
+    return render(request, 'app/admin_topic.html', context)

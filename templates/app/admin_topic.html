@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Topic Management - my pace{% endblock %}
+
+{% block content %}
+<div class="index-container">
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if "success" in message.tags %}
+                <div class="success-box">
+                    <p class="msg">{{ message }}</p>
+                </div>
+            {% else %}
+                <ul class="error-list">
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <section class="search-section">
+        <h3 class="form-title">{% if topic_edit %}Edit Topic{% else %}Create Topic{% endif %}</h3>
+        <form method="post" class="search-form admin-form">
+            {% csrf_token %}
+            <div class="date-range">
+                <label>日付：</label>
+                <input type="date" name="date" value="{% if topic_edit %}{{ topic_edit.date|date:'Y-m-d' }}{% else %}{{ now|date:'Y-m-d' }}{% endif %}" required>
+            </div>
+            <div class="content-input">
+                <input type="text" name="title" value="{{ topic_edit.title|default:'' }}" maxlength="100" placeholder="お題を入力 (30文字以内推奨)" required style="width: 100%; margin: 10px 0;">
+            </div>
+            <div class="search-buttons">
+                <button type="submit" class="btn-search">保存する</button>
+                {% if topic_edit %}
+                    <a href="{% url 'admin_topic' %}" class="btn-reset">キャンセル</a>
+                {% endif %}
+            </div>
+        </form>
+    </section>
+
+    <h3>Topics</h3>
+    <section class="diary-list">
+        {% for topic in topics %}
+            <a href="{% url 'admin_topic_edit' topic.id %}" class="diary-item {% if topic.date == now.date %}today-highlight{% endif %}">
+                <span class="date">{{ topic.date|date:"Y年m月d日" }}</span>
+                <p class="excerpt">{{ topic.title }}</p>
+            </a>
+        {% empty %}
+            <p>登録されたお題はありません。</p>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}
