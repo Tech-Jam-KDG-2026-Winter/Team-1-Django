@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}日記一覧 - my pace{% endblock %}
+{% block title %}Your Diaries - my pace{% endblock %}
 
 {% block content %}
 <div class="index-container">
     <div class="write-link-area">
-        <a href="{% url 'diary_write' %}" class="btn-write">今日の日記を書く</a>
+        <a href="{% url 'diary_write' %}" class="btn-write">Write Diary</a>
     </div>
 
-    <h3>過去の自分の日記一覧</h3>
+    <h3>Your Diaries</h3>
 
     <div class="search-toggle-area">
         <button type="button" class="btn-toggle-search" onclick="toggleSearch()">
@@ -39,14 +39,4 @@
         {% endfor %}
     </section>
 </div>
-<script>
-    function toggleSearch(){
-    const searchSection = document.getElementById('search-section');
-    if (searchSection.style.display === 'none'){
-        searchSection.style.display = 'block';
-    } else{
-        searchSection.style.display = 'none';
-    }
-}
-</script>
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}日記詳細 - my pace{% endblock %}
+{% block title %}{{ diary.date|date:"Y年m月d日" }} - my pace{% endblock %}
 
 {% block content %}
 <article class="diary-detail">
@@ -8,17 +8,17 @@
     </header>
     
     <section class="content-box user-record">
-        <h3>あなたの記録</h3>
+        <h3>Diary Contents</h3>
         <div class="text">{{ diary.content|linebreaksbr }}</div>
     </section>
 
     <section class="content-box ai-feedback">
-        <h3>AIからの返信</h3>
-        <div class="text">{{ diary.ai_response|linebreaksbr }}</div>
+        <h3>Comment by AI</h3>
+        {% if is_today %}
+            <div class="text">返信は明日届きます。お楽しみにお待ちください。</div>
+        {% else %}
+            <div class="text">{{ diary.ai_response|linebreaksbr }}</div>
+        {% endif %}
     </section>
-
-    <div class="footer-nav">
-        <a href="{% url 'index' %}" class="btn-back">一覧に戻る</a>
-    </div>
 </article>
 {% endblock %}
