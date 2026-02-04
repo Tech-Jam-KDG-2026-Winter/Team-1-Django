@@ -123,3 +123,8 @@
     padding: 60px 20px;
     font-size: 15px;
 }
+
+.comment-container{
+    flex-grow: 0;
+    max-height: 320px;
+}
