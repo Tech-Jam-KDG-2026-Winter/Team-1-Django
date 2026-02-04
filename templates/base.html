@@ -40,7 +40,7 @@
                     <ul class="menu-list">
                         <li><a href="{% url 'index' %}"><i class="fa-solid fa-book fa-xl" style="color: #f2f7f8;"></i> Your Diaries</a></li>
                         <li><a href="{% url 'diary_write' %}"><i class="fa-solid fa-pen-to-square fa-xl" style="color: #f2f7f8;"></i> Write Diary</a></li>
-                        <li><a href="{% url 'daily_topic' %}"><i class="fa-solid fa-comments fa-lg" style="color: #f2f7f8;"></i> Daily Topic</a></li>
+                        <li><a href="{% url 'daily_topic' %}"><i class="fa-solid fa-comments fa-lg" style="color: #f2f7f8;"></i> Today's Topic</a></li>
                         <li>
                             <form action="{% url 'logout' %}" method="post">
                                 {% csrf_token %}
