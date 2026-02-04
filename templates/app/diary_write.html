@@ -5,13 +5,6 @@
 <div class="write-container">
     <h2>Write Today's Diary</h2>
     <p class="info">24時までは何度でも上書き保存可能です。</p>
-    {% if messages %}
-        <div class="success-box">
-            {% for message in messages %}
-                <p class="msg">{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
 
     <form method="post" id="diary-form">
         {% csrf_token %}

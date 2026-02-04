@@ -153,9 +153,6 @@ button, input, textarea, select {
     font-weight: 600;
 }
 
-/* ロゴは一旦非表示（使いたくなったら display:block に） */
-.app-logo{ display: none; }
-
 /* 右上配置 */
 .menu-wrapper{
     position: absolute;

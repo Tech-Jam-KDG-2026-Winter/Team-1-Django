@@ -14,7 +14,11 @@
 
     <section class="content-box ai-feedback">
         <h3>Comment by AI</h3>
-        <div class="text">{{ diary.ai_response|linebreaksbr }}</div>
+        {% if is_today %}
+            <div class="text">返信は明日届きます。お楽しみにお待ちください。</div>
+        {% else %}
+            <div class="text">{{ diary.ai_response|linebreaksbr }}</div>
+        {% endif %}
     </section>
 </article>
 {% endblock %}
