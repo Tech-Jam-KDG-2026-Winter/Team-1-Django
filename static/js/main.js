@@ -44,3 +44,13 @@ if (diaryForm) {
         }
     };
 }
+
+// index画面：検索ボタンクリック時の処理
+function toggleSearch(){
+    const searchSection = document.getElementById('search-section');
+    if (searchSection.style.display === 'none'){
+        searchSection.style.display = 'block';
+    } else{
+        searchSection.style.display = 'none';
+    }
+}

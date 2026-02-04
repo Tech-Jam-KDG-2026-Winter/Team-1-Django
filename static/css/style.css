@@ -628,6 +628,28 @@ form:has(input[type="password"]) {
     background:var(--primary-color);
     transform: scale(0.98);
 }
+.search-toggle-area{
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+.btn-toggle-search{
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.btn-toggle-search:active{
+    background: var(--bg-color);
+    border-color: var(--primary-color);
+}
 .search-section {
     background: transparent;
     padding: 0 0 24px 0;
@@ -1090,7 +1112,8 @@ form:has(input[type="password"]) {
 
 /* コメント一覧エリア） */
 .comment-container {
-    flex-grow: 1; /* 残りの高さをすべて埋める */
+    flex-grow: 0; 
+    max-height: 500px;
     background: #ffffff;
     border: 2px solid var(--border-color);
     border-radius: 12px;

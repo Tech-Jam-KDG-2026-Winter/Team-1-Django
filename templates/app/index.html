@@ -9,7 +9,12 @@
 
     <h3>Your Diaries</h3>
 
-    <section class="search-section">
+    <div class="search-toggle-area">
+        <button type="button" class="btn-toggle-search" onclick="toggleSearch()">
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #3f4a5a;"></i> search
+        </button>
+    </div>
+    <section class="search-section" id="search-section" style="display: none;">
         <form method="get" class="search-form">
             <input type="text" name="q" placeholder="キーワード (本文・AI返信)" value="{{ request.GET.q }}">
             <div class="date-range">
